@@ -132,7 +132,20 @@
             height: 100%;
             z-index: -1;
         }
-        
+        #contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+#contact .contact-form {
+    margin-left: auto;
+    margin-right: auto;
+}
+#contact > div[style] {
+    text-align: center;
+}
         .contact-form {
             max-width: 600px;
             background: var(--card-bg);
@@ -174,6 +187,40 @@
                 grid-template-columns: 1fr;
             }
         }
+        .about-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.about-content {
+    flex: 2 1 350px;
+    min-width: 0;
+}
+.about-video {
+    flex: 1 1 320px;
+    min-width: 320px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.about-video iframe {
+    border-radius: 15px;
+    width: 100%;
+    max-width: 340px;
+    aspect-ratio: 9/16;
+}
+@media (max-width: 1024px) {
+    .about-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .about-video {
+        justify-content: flex-start;
+        max-width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -210,21 +257,30 @@
     </section>
     
     <!-- About Us Section -->
-    <section id="about">
-        <h2>About Us</h2>
-        <p>Leap Studios is an innovative educational technology company dedicated to revolutionizing math learning through immersive 3D experiences. Our team of passionate developers, educators, and designers work together to create engaging learning tools that make mathematics accessible and enjoyable for everyone.</p>
-        <p>Founded in 2025, we've helped thousands of students overcome their math anxiety and develop genuine appreciation for the beauty of mathematics. Our mission is to make learning math as intuitive and exciting as playing a game.</p>
-        <div class="features">
-            <div class="feature-card">
-                <h3>Our Vision</h3>
-                <p>To create a world where every student can experience the joy of mathematical discovery through interactive visualization.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Our Approach</h3>
-                <p>Combining cognitive science principles with cutting-edge technology to create effective learning experiences.</p>
+   <section id="about">
+    <div class="about-container">
+        <div class="about-content">
+            <h2>About Us</h2>
+            <p>Leap Studios is an innovative educational technology company dedicated to revolutionizing math learning through immersive 3D experiences. Our team of passionate developers, educators, and designers work together to create engaging learning tools that make mathematics accessible and enjoyable for everyone.</p>
+            <p>Founded in 2025, we've helped thousands of students overcome their math anxiety and develop genuine appreciation for the beauty of mathematics. Our mission is to make learning math as intuitive and exciting as playing a game.</p>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Our Vision</h3>
+                    <p>To create a world where every student can experience the joy of mathematical discovery through interactive visualization.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Our Approach</h3>
+                    <p>Combining cognitive science principles with cutting-edge technology to create effective learning experiences.</p>
+                </div>
             </div>
         </div>
-    </section>
+         <div class="about-video">
+            <iframe width="320" height="570"
+                src="https://www.youtube.com/embed/pzMXPkk6eak?autoplay=1&mute=1&loop=1&playlist=pzMXPkk6eak"
+                title="YouTube video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
     
     <!-- Contact Section -->
     <section id="contact">

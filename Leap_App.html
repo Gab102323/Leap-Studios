@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leap App | Interactive Math Learning</title>
+    <title>Leap Studios | Interactive Math Learning</title>
     <style>
         :root {
             --primary: #00ff88;
             --primary-dark: #003300;
             --card-bg: rgba(15, 15, 15, 0.8);
             --text: #000000;
+            --section-bg: rgba(255, 255, 255, 0.9);
         }
         
         * {
@@ -32,28 +33,25 @@
             height: 100%;
             z-index: -1;
             object-fit: cover;
-            opacity: 1;
+            opacity: 500%;
         }
         
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        section {
             min-height: 100vh;
-            position: relative;
-        }
-        
-        .content {
             padding: 5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            z-index: 2;
-            backdrop-filter: blur(2px);
+            position: relative;
         }
         
-        .visuals {
-            position: relative;
-            overflow: hidden;
+        #hero {
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        
+        #about, #contact {
+            background-color: var(--section-bg);
         }
         
         h1 {
@@ -65,11 +63,18 @@
             color: transparent;
         }
         
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
         p {
             font-size: 1.1rem;
             opacity: 0.9;
             margin-bottom: 2rem;
             line-height: 1.6;
+            max-width: 800px;
         }
         
         .btn {
@@ -120,24 +125,53 @@
         }
         
         #canvas {
-            position: absolute;
+            position: fixed;
             top: 0;
-            left: 0;
-            width: 100%;
+            right: 0;
+            width: 50%;
             height: 100%;
+            z-index: -1;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 136, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
         }
         
         @media (max-width: 1024px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-            
-            .content {
+            section {
                 padding: 3rem 2rem;
             }
             
-            .visuals {
+            #canvas {
+                width: 100%;
                 height: 50vh;
+                position: relative;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -146,36 +180,79 @@
     <!-- Animated Math Background -->
     <img src="https://th.bing.com/th/id/R.d8154e4754e05da439cb182f784f0cf5?rik=j%2byJzhU1bDLJZQ&riu=http%3a%2f%2fmedia.giphy.com%2fmedia%2fVjI9yldoeRyTK%2fgiphy.gif&ehk=Lj8ZpF04RnQvKVwEsRPq3ojxbX8i6OMeJSk%2fpQ2haOc%3d&risl=&pid=ImgRaw&r=0" class="background-gif" alt="math animation background">
     
-    <div class="container">
-        <div class="content">
-            <h1>Leap Studios</h1>
-            <p>Transform your math learning experience with our immersive 3D educational platform. Designed to make abstract concepts tangible through interactive visualizations.</p>
-            <a href="#" class="btn">Click here to download!</a>
-            
-            <div class="features">
-                <div class="feature-card">
-                    <h3>Interactive 3D Models</h3>
-                    <p>Explore mathematical concepts through manipulable 3D objects and visualizations.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Gamified Learning</h3>
-                    <p>Earn points and badges as you solve problems and master new concepts.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Adaptive Challenges</h3>
-                    <p>Problems adjust to your skill level for optimal learning progression.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Real-time Feedback</h3>
-                    <p>Get instant visual feedback as you work through problems and equations.</p>
-                </div>
+    <!-- 3D Canvas -->
+    <div id="canvas"></div>
+    
+    <!-- Hero Section -->
+    <section id="hero">
+        <h1>Leap Studios</h1>
+        <p>Transform your math learning experience with our immersive 3D educational platform. Designed to make abstract concepts tangible through interactive visualizations.</p>
+        <a href="https://drive.usercontent.google.com/download?id=1XzARhMZpPX3GFh7JgPavSbW3bBPJ8wiD&export=download&authuser=0" class="btn">Click here to download!</a>
+        
+        <div class="features">
+            <div class="feature-card">
+                <h3>Interactive 3D Models</h3>
+                <p>Explore mathematical concepts through manipulable 3D objects and visualizations.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Gamified Learning</h3>
+                <p>Earn points and badges as you solve problems and master new concepts.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Adaptive Challenges</h3>
+                <p>Problems adjust to your skill level for optimal learning progression.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Real-time Feedback</h3>
+                <p>Get instant visual feedback as you work through problems and equations.</p>
             </div>
         </div>
-        
-        <div class="visuals">
-            <div id="canvas"></div>
+    </section>
+    
+    <!-- About Us Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Leap Studios is an innovative educational technology company dedicated to revolutionizing math learning through immersive 3D experiences. Our team of passionate developers, educators, and designers work together to create engaging learning tools that make mathematics accessible and enjoyable for everyone.</p>
+        <p>Founded in 2025, we've helped thousands of students overcome their math anxiety and develop genuine appreciation for the beauty of mathematics. Our mission is to make learning math as intuitive and exciting as playing a game.</p>
+        <div class="features">
+            <div class="feature-card">
+                <h3>Our Vision</h3>
+                <p>To create a world where every student can experience the joy of mathematical discovery through interactive visualization.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Our Approach</h3>
+                <p>Combining cognitive science principles with cutting-edge technology to create effective learning experiences.</p>
+            </div>
         </div>
-    </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Our Developers</h2>
+        <p>Have questions or feedback? We'd love to hear from you! Reach out to our development team for more information about our products or potential collaborations.</p>
+        
+        <div class="contact-form">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" rows="5" placeholder="Tell us about your inquiry"></textarea>
+            </div>
+            <button class="btn" type="submit">Send Message</button>
+        </div>
+        
+        <div style="margin-top: 3rem;">
+            <h3>Direct Contact</h3>
+            <p>Email: <a href="https://www.facebook.com/GhabrieI">David Gabriel</a></p>
+            <p>Phone: 09946096568</p>
+        </div>
+    </section>
 
     <script>
         // Three.js Setup
@@ -280,26 +357,6 @@
             equations.push(textMesh);
         });
 
-        // Animated particles
-        const particlesGeo = new THREE.BufferGeometry();
-        const particlesCnt = 1000;
-        const posArray = new Float32Array(particlesCnt * 3);
-        
-        for(let i = 0; i < particlesCnt * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 20;
-        }
-        
-        particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const particlesMat = new THREE.PointsMaterial({
-            size: 0.05,
-            color: 0x00ff88,
-            transparent: true,
-            opacity: 0.6
-        });
-        
-        const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
-        scene.add(particlesMesh);
-
         // Animation loop
         const clock = new THREE.Clock();
         
@@ -321,9 +378,6 @@
                 eq.position.z = Math.cos(elapsedTime * 0.1 + i) * 2;
             });
             
-            // Animate particles
-            particlesMesh.rotation.y = elapsedTime * 0.05;
-            
             renderer.render(scene, camera);
         }
         animate();
@@ -333,6 +387,16 @@
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
         });
     </script>
     
